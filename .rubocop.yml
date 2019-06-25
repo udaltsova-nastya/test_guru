@@ -1,0 +1,36 @@
+require:
+  - rubocop-rails
+
+AllCops:
+  DisplayCopNames: true
+  StyleGuideCopsOnly: false
+  TargetRubyVersion: 2.6.3
+  Exclude:
+    - db/**/*
+    - script/**/*
+    - bin/**/*
+    - tmp/**/*
+    - config/**/*
+    - test/**/*
+    - ./Gemfile
+    - ./Rakefile
+    - ./config.ru
+
+Rails:
+  Enabled: true
+
+# Привыкаю писать документацию к каждому классу и модулю
+Documentation:
+  Enabled: true
+
+# Перевод строк -- только в стиле Unix
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
+# Ну не 80 же?
+Metrics/LineLength:
+  Max: 120
+
+# Всегда используем только двойные кавычки
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
