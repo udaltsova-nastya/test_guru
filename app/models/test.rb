@@ -6,6 +6,6 @@ class Test < ApplicationRecord
   has_many :questions
 
   def self.by_category(title)
-    Category.find_by(title: title).tests
+    Category.by_title(title).tests.order(title: :desc).pluck(:title)
   end
 end
