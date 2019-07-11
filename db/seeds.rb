@@ -12,11 +12,11 @@ ruby = Category.create(title: "Ruby")
 yoga = Category.create(title: "Yoga")
 cats = Category.create(title: "Cats")
 
-ruby_basics = ruby.tests.create(title: "Ruby basics", level: 0)
-ruby_meta = ruby.tests.create(title: "Ruby metaprogramming", level: 1)
-yoga_hatha = yoga.tests.create(title: "Yoga Hatha", level: 2)
-yoga_anatomy = yoga.tests.create(title: "Anatomy", level: 3)
-cats_psychology = cats.tests.create(title: "Psychology", level: 1)
+ruby_basics = ruby.tests.create(title: "Ruby basics", level: 0, author: user)
+ruby_meta = ruby.tests.create(title: "Ruby metaprogramming", level: 1, author: user)
+yoga_hatha = yoga.tests.create(title: "Yoga Hatha", level: 2, author: user)
+yoga_anatomy = yoga.tests.create(title: "Anatomy", level: 3, author: user)
+cats_psychology = cats.tests.create(title: "Psychology", level: 1, author: user)
 
 ruby_basics.questions.create(body: "How is array defined in Ruby?").tap do |question|
   question.answers.create([
