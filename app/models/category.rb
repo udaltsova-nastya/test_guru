@@ -16,8 +16,6 @@ class Category < ApplicationRecord
   has_many :tests
 
   scope :by_title, -> (title) { find_by(title: title) }
-  scope :title_asc, -> { order(title: :asc) }
-  scope :title_desc, -> { order(title: :desc) }   
   
   validates :title, presence: true
 end
