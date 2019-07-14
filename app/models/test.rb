@@ -25,7 +25,9 @@ class Test < ApplicationRecord
   has_many :users, through: :user_tests
   belongs_to :author, class_name: "User"
 
-  scope :by_category, -> (title) { Category.by_title(title).tests.title_desc.pluck(:title) }
+  def self.by_category(title)
+    Category.by_title(title).tests.order(title: :desc).pluck(:title)
+  end
   scope :easy, -> { where(level: EASY_LEVELS) }
   scope :middle, -> { where(level: MIDDLE_LEVELS) }
   scope :hard, -> { where(level: HARD_LEVELS) }

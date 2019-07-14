@@ -22,12 +22,12 @@ class Answer < ApplicationRecord
 
   validates :body, presence: true
 
-  validate :question_answers_count
+  validate :answers_count, on: :create
 
   private
 
-  def question_answers_count
-    return if QUESTION_ANSWERS_COUNT.include?(question.answers.count)
+  def answers_count
+    return if QUESTION_ANSWERS_COUNT.include?(question.answers.count + 1)
     errors.add(:base, "There should be 1 to 4 answers to one question")
   end
 end
