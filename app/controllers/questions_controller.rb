@@ -10,21 +10,31 @@ class QuestionsController < ApplicationController
     render plain: @question.body
   end
 
-  def new; end
+  def new
+    @question = @test.questions.build
+  end
 
   def create
-    question = test.questions.create!(qustion_params)
-    render plain: "Question created: #{question.body}"
+    @question = @test.questions.new(qustion_params)
+    if @question.save
+      redirect_to @question
+    else
+      render :new
+    end
   end
 
   def destroy
-    @question.destroy
+    if @question.destroy
+      render plain: "Question was deleted"
+    else
+      render plain: "Question was not deleted"
+    end
   end
 
   private
 
   def find_test
-    @test = Test.find(test_id)
+    @test = Test.find(params[:test_id])
   rescue ActiveRecord::RecordNotFound => e
     redirect_to "/404.html"
   end
@@ -33,10 +43,6 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
   rescue ActiveRecord::RecordNotFound => e
     redirect_to "/404.html"
-  end
-
-  def test_id
-    params[:test_id]
   end
 
   def qustion_params
