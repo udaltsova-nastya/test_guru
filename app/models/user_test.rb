@@ -12,6 +12,7 @@
 #  updated_at  :datetime         not null
 #
 
+
 ##
 # @example
 # nastya = User.find_by(name: "Nastya")

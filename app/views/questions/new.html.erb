@@ -1,2 +1,13 @@
-<%= render "form" %>
-<%= link_to "Back", test_path(@question.test) %>
+<h1>
+  <%= "#{@test.id}. #{@test.category.title} - #{@test.title}" %>
+</h1>
+<h2>
+  Create question:
+</h2>
+<form action="/tests/<%= @test.id %>/questions" method="post">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+
+  <label for="question-body">Body:</label>
+  <input type="text" name="question[body]" id="question-body">
+  <input type="submit" value="Create">
+</form>

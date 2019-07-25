@@ -14,7 +14,7 @@
 
 # :nodoc:
 class Answer < ApplicationRecord
-  QUESTION_ANSWERS_COUNT = (1..4).freeze
+  QUESTION_ANSWERS_COUNT = (1..4)
 
   belongs_to :question
 
@@ -28,7 +28,6 @@ class Answer < ApplicationRecord
 
   def answers_count
     return if QUESTION_ANSWERS_COUNT.include?(question.answers.count + 1)
-
     errors.add(:base, "There should be 1 to 4 answers to one question")
   end
 end
