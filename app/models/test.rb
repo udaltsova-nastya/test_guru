@@ -15,9 +15,9 @@
 
 # :nodoc:
 class Test < ApplicationRecord
-  EASY_LEVELS = (0..1)
-  MIDDLE_LEVELS = (2..4)
-  HARD_LEVELS = (5..Float::INFINITY)
+  EASY_LEVELS = (0..1).freeze
+  MIDDLE_LEVELS = (2..4).freeze
+  HARD_LEVELS = (5..Float::INFINITY).freeze
 
   belongs_to :category
   has_many :questions
@@ -31,8 +31,13 @@ class Test < ApplicationRecord
   scope :easy, -> { where(level: EASY_LEVELS) }
   scope :middle, -> { where(level: MIDDLE_LEVELS) }
   scope :hard, -> { where(level: HARD_LEVELS) }
-  
+
   validates :title, presence: true
   validates :level, numericality: { greater_than: -1 }
   validates :title, uniqueness: { scope: :level }
+
+  # test.category_title -> test.category.title
+  delegate :title, to: :category, prefix: true
+
+  delegate :count, to: :questions, prefix: true
 end

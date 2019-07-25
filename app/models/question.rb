@@ -17,4 +17,6 @@ class Question < ApplicationRecord
   has_many :answers
 
   validates :body, presence: true
+
+  delegate :title, to: :test, prefix: true
 end
